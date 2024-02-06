@@ -2,6 +2,7 @@
 import * as React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { BubbleChat } from 'flowise-embed-react'; // Import BubbleChat
 
 import * as Fathom from 'fathom-client'
 // used for rendering equations (optional)
@@ -61,5 +62,49 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return <Component {...pageProps} />
+  return (
+    <>
+      <BubbleChat
+        chatflowid="4fdcc9bb-af61-4b83-8801-cfa4e7fb0378"
+        apiHost="https://flowise-dojo.moodmnky.com"
+        theme={{
+          button: {
+            backgroundColor: "#000000",
+            right: 20,
+            bottom: 20,
+            size: "medium",
+            iconColor: "black",
+            customIconSrc: "https://cdn.shopify.com/s/files/1/0693/4328/1426/files/CODE_MNKY_SVG.svg",
+          },
+          chatWindow: {
+            welcomeMessage: "Welcome to CODE's Corner! How may I be of service?",
+            backgroundColor: "#191919",
+            height: 700,
+            width: 400,
+            fontSize: 16,
+            poweredByTextColor: "#191919",
+            botMessage: {
+              backgroundColor: "#2F3437",
+              textColor: "#FFFFFF",
+              showAvatar: true,
+              avatarSrc: "https://cdn.shopify.com/s/files/1/0693/4328/1426/files/CODE_MNKY_SVG.svg?",
+            },
+            userMessage: {
+              backgroundColor: "#5E87C9",
+              textColor: "#ffffff",
+              showAvatar: false,
+              avatarSrc: "https://cdn.discordapp.com/attachments/1083532452347269220/1197594187890180106/greatlee-favicon.png",
+            },
+            textInput: {
+              placeholder: "Type your question",
+              backgroundColor: "#2F3437",
+              textColor: "#ffffff",
+              sendButtonColor: "#5E87C9",
+            }
+          }
+        }}
+      />
+  <Component {...pageProps} />
+  </>
+  );
 }
